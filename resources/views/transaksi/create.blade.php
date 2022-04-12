@@ -229,7 +229,7 @@
 
                 $('#modalBarang').modal('hide');
                 $('#judul').val(idbarang+' - '+namabarang);
-                $('#barang_id').val(idbarang);
+                $('#idbarang').val(idbarang);
                 $('#namabarang').val(namabarang);
                 $('#kodebarang').val(kodebarang);
                 $('#merek').val(merek);

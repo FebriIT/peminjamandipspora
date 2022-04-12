@@ -14,46 +14,37 @@
 
                     <tbody>
                         <tr>
-                            <td>Judul</td>
+                            <td>Kode Barang</td>
                             <td>:</td>
-                            <td>{{ $data->judul }}</td>
+                            <td>{{ $data->kodebarang }}</td>
                         </tr>
                         <tr>
-                            <td>ISBN</td>
+                            <td>Nama Barang</td>
                             <td>:</td>
-                            <td>{{ $data->isbn }}</td>
+                            <td>{{ $data->namabarang }}</td>
                         </tr>
 
                         <tr>
-                            <td>Pengarang</td>
+                            <td>Merek</td>
                             <td>:</td>
-                            <td>{{ $data->pengarang }}</td>
+                            <td>{{ $data->merek }}</td>
                         </tr>
                         <tr>
-                            <td>Penerbit</td>
+                            <td>Jumlah Barang</td>
                             <td>:</td>
-                            <td>{{ $data->penerbit }}</td>
+                            <td>{{ $data->jumlahbarang }}</td>
                         </tr>
                         <tr>
-                            <td>Tahun Terbit</td>
+                            <td>Tanggal Pembelian</td>
                             <td>:</td>
-                            <td>{{ $data->tahun_terbit }}</td>
-                        </tr>
-                        <tr>
-                            <td>Jumlah Buku</td>
-                            <td>:</td>
-                            <td>{{ $data->jumlah_buku }}</td>
+                            <td>{{ $data->tglpembelian }}</td>
                         </tr>
                         <tr>
                             <td>Deskripsi</td>
                             <td>:</td>
                             <td>{{ $data->deskripsi }}</td>
                         </tr>
-                        <tr>
-                            <td>Lokasi</td>
-                            <td>:</td>
-                            <td>{{ $data->lokasi }}</td>
-                        </tr>
+
                     </tbody>
                 </table>
             </div>

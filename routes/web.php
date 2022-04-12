@@ -77,7 +77,7 @@ Route::prefix('admin')->middleware('auth', 'role:admin')->group(function () {
     Route::get('/transaksi/{id}/detail',[TransaksiController::class,'detail']);
 
     Route::get('/anggota/{no_anggota}/detail',[AnggotaController::class,'detail']);
-    Route::get('/buku/{id}/detail',[DataBarangController::class,'detail']);
+    Route::get('/databarang/{id}/detail',[DataBarangController::class,'detail']);
 });
 
 
