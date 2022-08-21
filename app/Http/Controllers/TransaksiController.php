@@ -79,7 +79,7 @@ class TransaksiController extends Controller
                 if ($tglterakhir<$tglsekarang){
                     if($roww->status!='Dikembalikan'){
                         $updatetransaki=Transaksi::find($roww->id)->update([
-                            'status'=>'Terlambat'
+                            'status'=>'Terlambat',
                         ]);
 
                     }
@@ -164,10 +164,10 @@ class TransaksiController extends Controller
     {
         $data=Transaksi::find($id);
         $barang=Barang::find($data->barang_id);
-        $stokbarangberkurang=$barang->jumlah_barang+1;
+        $stokbarangberkurang=$barang->jumlahbarang+$data->jumlah;
         // dd($stokbarangberkurang);
         $barang->update([
-            'jumlah_barang'=>$stokbarangberkurang
+            'jumlahbarang'=>$stokbarangberkurang
         ]);
         $data->update(['status'=>'Dikembalikan']);
         return redirect('/admin/transaksi')->with('sukses','Data Berhasil Diubah');

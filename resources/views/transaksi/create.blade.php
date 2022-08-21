@@ -64,10 +64,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>IdBarang</label>
-                        <input type="text" disabled name="idbarang" id="idbarang" class="form-control" value="">
-                    </div>
+
                     <div class="form-group">
                         <label>Kode Barang</label>
                         <input type="text" disabled name="kodebarang" id="kodebarang" class="form-control" value="">
@@ -75,6 +72,10 @@
                     <div class="form-group">
                         <label>Nama Barang</label>
                         <input type="text" disabled name="namabarang" id="namabarang" class="form-control" value="">
+                    </div>
+                    <div class="form-group">
+                        <label>Jumlah</label>
+                        <input type="number" name="jumlah" id="jumlah" class="form-control" value="">
                     </div>
                         <div class="form-group">
                         <label>Tanggal Kembali</label>
@@ -167,9 +168,9 @@
                             <tr class="pilihbarang" idBarang="{{ $row1->id }}" kodebarang="{{ $row1->kodebarang }}" namabarang="{{ $row1->namabarang }}" merek="{{ $row1->merek }}" jumlahbarang="{{ $row1->jumlahbarang }}" deskripsi="{{ $row1->deskripsi }}">
                                 <td  class="py-1">
                                 @if($row1->cover)
-                                    <img src="{{asset('storage/coverbuku/'. $row1->cover)}}" alt="image"  width="70px" height="70px" class="rounded-circle mr-1" />
+                                    <img src="{{asset('storage/coverbarang/'. $row1->cover)}}" alt="image"  width="70px" height="70px" class="rounded-circle mr-1" />
                                 @else
-                                    <img src="{{asset('storage/coverbuku/default.jpg')}}" alt="image"  width="70px" height="70px" class="rounded-circle mr-1" />
+                                    <img src="{{asset('storage/coverbarang/default.jpg')}}" alt="image"  width="70px" height="70px" class="rounded-circle mr-1" />
                                 @endif
 
                                 </td>
@@ -230,6 +231,7 @@
                 $('#modalBarang').modal('hide');
                 $('#judul').val(idbarang+' - '+namabarang);
                 $('#idbarang').val(idbarang);
+                $('#barang_id').val(idbarang);
                 $('#namabarang').val(namabarang);
                 $('#kodebarang').val(kodebarang);
                 $('#merek').val(merek);

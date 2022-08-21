@@ -27,6 +27,8 @@
                             {{-- <th>ID Transaksi</th> --}}
                             <th scope="col">Nomor Anggota</th>
                             <th scope="col">Peminjam</th>
+                            <th scope="col">Jumlah Peminjaman</th>
+
                             <th scope="col">ID Barang</th>
                             <th scope="col">Tgl Pinjam</th>
                             <th scope="col">Tgl Kembali</th>
@@ -43,6 +45,7 @@
                             {{-- <td>{{ $row->id }}</td> --}}
                             <th scope="row"><a href="/{{ Auth::user()->role }}/anggota/{{ $row->user->no_anggota }}/detail">{{ $row->user->no_anggota }}</a> </th>
                             <td>{{ $row->user->name }}</td>
+                            <td>{{ $row->jumlah }}</td>
                             <td><a href="/{{ Auth::user()->role }}/databarang/{{ $row->barang_id }}/detail">{{ $row->barang_id }}</a></td>
                             <td>{{ $row->tgl_pinjam }}</td>
                             <td>{{ $row->tgl_kembali }}</td>
@@ -62,7 +65,7 @@
                                     </button>
                                     <div class="dropdown-menu" x-placement="bottom-start"
                                         style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 29px, 0px);">
-                                        @if ($row->status!='Kembali')
+                                        @if ($row->status!='Dikembalikan')
                                         <a href="/admin/transaksi/{{ $row->id }}/update"
                                             class="dropdown-item btn-sm">Dikembalikan</a>
                                         @endif

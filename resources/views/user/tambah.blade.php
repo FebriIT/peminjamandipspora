@@ -26,12 +26,12 @@
                     </div>
                     <div class="form-group">
                         <label>Nama</label>
-                        <input type="text" name="name" class="form-control" required>
+                        <input type="text" name="name" class="form-control" required value="{{old('name')}}">
                     </div>
 
                     <div class="form-group">
                         <label>Jenis Kelamin</label>
-                        <select class="form-control" name="jk" required>
+                        <select class="form-control" name="jk" required value="{{old('jk')}}">
                             <option value="">-Pilih-</option>
                             <option value="Laki-Laki">Laki-Laki</option>
                             <option value="Perempuan">Perempuan</option>
@@ -39,18 +39,18 @@
                     </div>
                     <div class="form-group">
                         <label>Nomor HP</label>
-                        <input type="number" name="nohp" class="form-control" required>
+                        <input type="number" name="nohp" value="{{old('nohp')}}" class="form-control" required>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" name="email" class="form-control" required>
+                        <input type="email" name="email" class="form-control" value="{{old('email')}}" required>
                     </div>
 
                     <div class="form-group">
                         <label>Username</label>
-                        <input type="text" name="username" class="form-control" required>
+                        <input type="text" name="username" class="form-control" value="{{old('username')}}"  required>
                     </div>
                     <div class="form-group">
                         <label>Password</label>

@@ -7,7 +7,7 @@
 
 
         <section class="section">
-            <img src="@if($data->avatar==null){{ asset('storage/avatar/default.png') }}@else {{ asset('storage/avatar/'.$data->name.'/'.$data->avatar) }}  @endif" style="width: 150px; height:150px; display: block;margin-left: auto;margin-right: auto; margin-bottom:50px;" alt="">
+            <img src="@if($data->avatar==null){{ asset('storage/avatar/default.jpeg') }}@else {{ asset('storage/avatar/'.$data->name.'/'.$data->avatar) }}  @endif" style="width: 150px; height:150px; display: block;margin-left: auto;margin-right: auto; margin-bottom:50px;" alt="">
             <div class="table-responsive">
 
                 <table class="table table-sm">

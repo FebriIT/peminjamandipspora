@@ -56,11 +56,12 @@ class DataBarangController extends Controller
         $data->jumlahbarang=$request->jumlahbarang;
         $data->tglpembelian=$request->tglpembelian;
         $data->deskripsi=$request->deskripsi;
+        // $data->jumlah=$request->jumlahbarang;
 
 
         if ($request->has('cover')) {
             $covername=$request->file('cover')->getClientOriginalName().'.'.time().'.'.$request->file('cover')->extension();
-            $request->file('cover')->move(public_path() . '/storage/coverbuku', $covername);
+            $request->file('cover')->move(public_path() . '/storage/coverbarang', $covername);
             $data->cover = $covername;
             $data->save();
         }else{
@@ -103,45 +104,35 @@ class DataBarangController extends Controller
      */
     public function update(Request $request,$id)
     {
-        // dd($request->all());
-        $this->validate($request, [
-            'judul' => 'required|max:255',
-            'isbn'=>'unique:buku,isbn|max:25',
-            'pengarang'=>'required|max:50',
-            'penerbit' => 'required|max:50',
-            'tahun_terbit' => 'required|max:4',
-            'jumlah_buku'=>'required|max:5',
-            'deskripsi'=>'required|max:255',
-
-        ]);
+        
 
         $data=Barang::find($id);
 
 
         $data->update([
-            'judul'=>$request->judul,
-            'isbn'=>$request->isbn,
-            'pengarang'=>$request->pengarang,
-            'penerbit'=>$request->penerbit,
-            'tahun_terbit'=>$request->tahun_terbit,
-            'jumlah_buku'=>$request->jumlah_buku,
+            
+            'namabarang'=>$request->namabarang,
+            'merek'=>$request->merek,
+            'jumlahbarang'=>$request->jumlahbarang,
+            'tglpembelian'=>$request->tglpembelian,
             'deskripsi'=>$request->deskripsi,
-            'lokasi'=>$request->lokasi,
+
 
 
         ]);
+
         if ($request->has('cover')) {
-            unlink(public_path() . '/storage/coverbuku/' . $data->cover);
+            unlink(public_path() . '/storage/coverbarang/' . $data->cover);
             // dd($request->file('cover'));
             $covername=$request->file('cover')->getClientOriginalName().'.'.time().'.'.$request->file('cover')->extension();
-            $request->file('cover')->move(public_path() . '/storage/coverbuku', $covername);
+            $request->file('cover')->move(public_path() . '/storage/coverbarang', $covername);
 
             $data->update(['cover'=>$covername]);
 
         }
 
 
-        return redirect('/admin/buku')->with('sukses','Data Berhasil Ditambahkan');
+        return redirect('/admin/databarang')->with('sukses','Data Berhasil Ditambahkan');
     }
 
     /**
@@ -152,19 +143,19 @@ class DataBarangController extends Controller
      */
     public function destroy($id)
     {
-        $buku=Barang::find($id);
+        $barang=Barang::find($id);
 
 
-        $syarat = 'public/coverbuku/'. $buku->cover;
+        $syarat = 'public/coverbarang/'. $barang->cover;
         // dd(Storage::exists($image_path));
 
 
 
-        Transaksi::where('buku_id',$buku->id)->delete();
+        Transaksi::where('barang_id',$barang->id)->delete();
         if (Storage::exists($syarat)) {
             Storage::delete($syarat);
         }
-        $buku->delete();
+        $barang->delete();
         return back()->with('sukses','Data Berhasil Ditambahkan');
     }
 
@@ -186,14 +177,21 @@ class DataBarangController extends Controller
         $transaksi->tgl_pinjam=$datenow;
         $transaksi->tgl_kembali=$req->tgl_kembali;
         $transaksi->status='Dipinjam';
+        $transaksi->jumlah=$req->jumlah;
         //kondisi stok buku berkurang
-        // dd($req->all);
         $barang=Barang::find($req->barang_id);
-        $stokbarangberkurang=$barang->jumlahbarang;
-        $barang->update([
-            'jumlah_buku'=>$stokbarangberkurang
-        ]);
-        $transaksi->save();
+        if($barang->jumlahbarang>$req->jumlah){
+            $stokbarangberkurang=$barang->jumlahbarang-$req->jumlah;
+        // dd($stokbarangberkurang);
+            $barang->update([
+                'jumlahbarang'=>$stokbarangberkurang
+            ]);
+            $transaksi->save();
+        }else{
+            return back()->with('sukses','Stok Barang Tidak Mencukupi');
+
+        }
+
 
         return redirect('/admin/transaksi')->with('sukses','Data Berhasil Ditambahkan');
     }

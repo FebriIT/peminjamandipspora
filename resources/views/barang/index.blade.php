@@ -36,9 +36,9 @@
                         <tr>
                             <td  class="py-1">
                             @if($row->cover)
-                                <img src="{{asset('storage/coverbuku/'. $row->cover)}}" alt="image"  width="70px" height="70px" class="rounded-circle mr-1" />
+                                <img src="{{asset('storage/coverbarang/'. $row->cover)}}" alt="image"  width="70px" height="70px" class="rounded-circle mr-1" />
                             @else
-                                <img src="{{asset('storage/coverbuku/default.jpg')}}" alt="image"  width="70px" height="70px" class="rounded-circle mr-1" />
+                                <img src="{{asset('storage/coverbarang/default.jpg')}}" alt="image"  width="70px" height="70px" class="rounded-circle mr-1" />
                             @endif
 
                             </td>
@@ -52,7 +52,7 @@
                             @if (Auth::user()->role=='admin')
                             <td>
                                 {{-- <a href="/admin/buku/{{ $row->id }}/pinjam" class="btn btn-icon btn-sm btn-primary" title="Pinjam Buku"><i class="fas fa-book"></i></a> --}}
-                                <a href="/{{ auth()->user()->role }}/buku/{{ $row->id }}/edit" class="btn btn-icon btn-sm btn-warning" title="Edit Buku"><i class="far fa-edit"></i></a>
+                                <a href="/{{ auth()->user()->role }}/databarang/{{ $row->id }}/edit" class="btn btn-icon btn-sm btn-warning" title="Edit Buku"><i class="far fa-edit"></i></a>
                                 <form action="{{ route('databarang.destroy', $row->id) }}"  method="post">
                                     {{ csrf_field() }}
                                     {{ method_field('delete') }}
